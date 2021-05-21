@@ -9,6 +9,7 @@ struct Movement
 
 class Player {
 	public:
+		Player();
 		Player(int row, int col, char symbol);
 		int getRow() const;
 		int getCol() const;

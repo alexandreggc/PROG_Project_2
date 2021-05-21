@@ -30,8 +30,8 @@ class Game {
 		// etc.
 	private:
 		fstream file;
-		/*Maze maze;
-		Player player;*/
+		Maze maze;
+		Player player;
 		vector<Robot> robots;
 		//other attributes
 };
