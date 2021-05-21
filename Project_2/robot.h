@@ -10,7 +10,7 @@ struct Position
 class Robot {
 	public:
 		enum State { ALIVE, STUCK, DEAD };
-		Robot(int row, int col);
+		Robot(int row, int col, int id);
 		int getID() const;
 		char getSymbol() const; // get char representation of robot (R if alive, r if dead)
 		int getRow() const;

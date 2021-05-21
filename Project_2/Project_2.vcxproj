@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Project_1\Project\main.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="maze.cpp" />
@@ -152,6 +153,9 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="post.h" />
     <ClInclude Include="robot.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="MAZE_01.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

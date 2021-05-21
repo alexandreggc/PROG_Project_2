@@ -12,13 +12,17 @@
 
 using namespace std;
 
+struct Door {
+	char chr;
+	int row, col;
+};
+
 class Game {
 	public:
 		Game(const string& filename);
 		// This constructor should initialize the Maze, the vector of Robots, and the Player,
 		// using the chars read from the file
 		bool play(); // implements the game loop; returns true if player wins, false otherwise
-		bool isValid();
 	private:
 		void showGameDisplay() const;
 		bool collide(Robot& robot, Post& post); // check if robot collided with post (and possibly set it as dead)
@@ -33,6 +37,7 @@ class Game {
 		Maze maze;
 		Player player;
 		vector<Robot> robots;
+		vector<Door> doors;
 		//other attributes
 };
 

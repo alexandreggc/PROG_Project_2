@@ -78,12 +78,17 @@ int main(){
                     int mz_num = maze_number();
                     if (mz_num == 0)
                         break;
+
                     string maze_name = file_str('m', mz_num);
-                    Game game = Game(maze_name);  // create game object
-                    if (game.isValid())
+                    fstream file(maze_name);
+                    if (file.is_open() && file.good()) {
+                        file.close();
+                        Game game = Game(maze_name); // create game object
                         game.play();
-                    else
+                    }
+                    else {
                         cerr << "Maze file not found!" << endl;
+                    }
                 }
                 break;
             }
