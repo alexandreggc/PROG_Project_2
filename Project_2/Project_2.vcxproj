@@ -153,6 +153,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="post.h" />
     <ClInclude Include="robot.h" />
+    <ClInclude Include="structs.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="MAZE_01.txt" />

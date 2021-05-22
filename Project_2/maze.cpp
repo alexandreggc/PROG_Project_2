@@ -15,6 +15,10 @@ int Maze::getnumCols() const {
 	return numCols;
 }
 
+vector<Post> Maze::getPosts() const {
+	return posts;
+}
+
 int Maze::getnumRows() const {
 	return numRows;
 }

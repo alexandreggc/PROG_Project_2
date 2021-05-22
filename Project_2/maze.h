@@ -14,6 +14,7 @@ class Maze {
 		void addPost(const Post& post); //, const Position &position);
 		int getnumRows() const;
 		int getnumCols() const;
+		vector<Post> getPosts() const;
 		// other methods
 	private:
 		int numRows, numCols;

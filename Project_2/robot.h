@@ -1,16 +1,12 @@
 #pragma once
 #ifndef ROBOT_H
 #define ROBOT_H
-
-struct Position
-{
-	int row, col;
-};
+#include "structs.h"
 
 class Robot {
 	public:
 		enum State { ALIVE, STUCK, DEAD };
-		Robot(int row, int col, int id);
+		Robot(int row, int col, int id, char symbol);
 		int getID() const;
 		char getSymbol() const; // get char representation of robot (R if alive, r if dead)
 		int getRow() const;
@@ -27,7 +23,7 @@ class Robot {
 		int id;
 		int row, col;
 		bool alive;
-		// other attributes (?)
+		char symbol;
 };
 
 #endif
