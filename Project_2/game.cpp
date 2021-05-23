@@ -213,10 +213,9 @@ void Game::updateRobot(Robot &robot,  Movement& delta) {
     }
     for (Robot& rb : robots) {  // check if the robot collided with another robot
         if (collide(newRobotPos, rb)) {
-            if (rb.isAlive()) {
-                rb.setAsDead();
-            }
-            remove(robot);
+            if (rb.isAlive()) rb.setAsDead();
+            robot.move(newRobotPos);
+            robot.setAsDead();
             robotsAlive();
             return;
         }
@@ -240,15 +239,6 @@ void Game::robotsAlive() const {
     }
     gameState = WON;
     return;
-}
-
-void Game::remove(Robot& robotA) {
-    int index = 0;
-    for (Robot& robotB : robots) {
-        if (robotA.getID() == robotB.getID())
-            robots.erase(robots.begin() + index);
-        index++;
-    }
 }
 
 bool Game::gameOver() const {

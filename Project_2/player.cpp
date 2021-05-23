@@ -69,11 +69,6 @@ void Player::setAsDead() {
     symbol = 'h';
 }
 
-void Player::move(Movement delta) {
-    row += delta.dRow;
-    col += delta.dCol;
-}
-
 void Player::move(Position position) {
     row = position.row;
     col = position.col;

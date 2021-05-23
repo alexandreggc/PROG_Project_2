@@ -15,7 +15,6 @@ class Player {
 		char getSymbol() const;
 		bool isAlive() const;
 		void setAsDead();
-		void move(Movement delta);
 		void move(Position position);
 
 	private:

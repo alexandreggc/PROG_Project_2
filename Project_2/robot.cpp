@@ -48,11 +48,6 @@ void Robot::setAsDead() {
     symbol = 'r';
 }
 
-void Robot::move(Movement delta) {
-    row += delta.dRow;
-    col += delta.dCol;
-}
-
 void Robot::move(const Position& position) {
     row = position.row;
     col = position.col;

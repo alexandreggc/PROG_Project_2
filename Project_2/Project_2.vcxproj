@@ -159,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="MAZE_01.txt" />
+    <Text Include="MAZE_02.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

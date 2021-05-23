@@ -35,7 +35,6 @@ class Game {
 		void updatePlayer(Movement& delta);
 		void updateRobot(Robot &robot, Movement& delta);
 		void robotsAlive() const;
-		void remove(Robot& robot);
 		bool gameOver() const;
 		// other methods, for example:
 		// to check if player is trying to move to a valid place

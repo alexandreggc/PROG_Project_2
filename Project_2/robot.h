@@ -5,7 +5,7 @@
 
 class Robot {
 	public:
-		enum State { ALIVE, STUCK, DEAD };
+		static int robotCounter; //used to attribute automatically the id to the robots
 		Robot();
 		Robot(int row, int col, char symbol);
 		int getID() const;
@@ -15,12 +15,9 @@ class Robot {
 		Position getPosition() const;
 		bool isAlive() const;
 		void setAsDead();
-		void move(const Movement delta);
 		void move(const Position& position);
 		Movement minimumPath(Position &pl) const;
-		//other methods
 	private:
-		static int robotCounter; //used to attribute automatically the id to the robots
 		int id;
 		int row, col;
 		bool alive;
