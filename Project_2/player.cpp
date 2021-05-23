@@ -32,8 +32,7 @@ Movement Player::input() {
     }
 }
 
-Position Player::getPosition() const
-{
+Position Player::getPosition() const{
     return {row, col};
 }
 
@@ -67,9 +66,15 @@ bool Player::isAlive() const {
 
 void Player::setAsDead() {
     alive = false;
+    symbol = 'h';
 }
 
 void Player::move(Movement delta) {
     row += delta.dRow;
     col += delta.dCol;
+}
+
+void Player::move(Position position) {
+    row = position.row;
+    col = position.col;
 }

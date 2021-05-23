@@ -40,3 +40,7 @@ bool Post::isElectrified() const {
 		return true;
 	return false;
 }
+
+void Post::setNoElectric() {
+	type = '+';
+}

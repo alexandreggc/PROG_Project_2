@@ -42,3 +42,43 @@ Position Robot::getPosition() const {
 bool Robot::isAlive() const {
 	return alive;
 }
+
+void Robot::setAsDead() {
+    alive = false;
+    symbol = 'r';
+}
+
+void Robot::move(Movement delta) {
+    row += delta.dRow;
+    col += delta.dCol;
+}
+
+void Robot::move(const Position& position) {
+    row = position.row;
+    col = position.col;
+}
+
+Movement Robot::minimumPath(Position &pl) const {
+    if (col > pl.col) {
+        if (row > pl.row)
+            return { -1, -1 };
+        if (row < pl.row)
+            return { 1, -1 };
+        if (row == pl.row)
+            return { 0, -1 };
+    }
+    else if (col < pl.col) {
+        if (row > pl.row)
+            return { -1, 1 };
+        if (row < pl.row)
+            return { 1, 1 };
+        if (row == pl.row)
+            return { 0, 1 };
+    }
+    else if (col == pl.col) {
+        if (row > pl.row)
+            return { -1, 0 };
+        if (row < pl.row)
+            return { 1, 0 };
+    }
+}

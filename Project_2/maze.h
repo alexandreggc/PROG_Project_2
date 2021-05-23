@@ -16,10 +16,11 @@ class Maze {
 		void addDoor(const Door& door);
 		void remove(const Post& post);
 		void remove(const Door& door);
+		void changePost(const Post& post);
 		int getnumRows() const;
 		int getnumCols() const;
-		vector<Post> getPosts() const;
-		vector<Door> getDoors() const;
+		vector<Post> getPosts();
+		vector<Door> getDoors();
 		// other methods
 	private:
 		int numRows, numCols;

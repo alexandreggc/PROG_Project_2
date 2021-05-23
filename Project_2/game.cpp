@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int Game::gameStatus = RUNNING;
+int Game::gameState = RUNNING;
 
 Game::Game(const string& filename) {
     Robot rb; // reset robot counter 
@@ -44,23 +44,38 @@ Game::Game(const string& filename) {
 }
 
 bool Game::play() {
-    gameStatus = RUNNING;
+    gameState = RUNNING;
     cout << maze.getnumRows() << ' ' << maze.getnumCols();
     buildDisplay();
     while (true) {
-        clearDisplay();
-        updateGameDisplay();
-        showGameDisplay();
-        Movement move = player.input();
-        if (validMove(move)) {
-            updatePlayer(move);
-            if (gameStatus == WON)
-                return true;
-            else if (gameStatus == LOST)
-                return false;
+        displayMaze();
+        // update player position and checks if game is over
+        while (true) {
+            Movement delta = player.input();
+            if (validMove(delta)) {
+                updatePlayer(delta);
+                if (gameOver()) {
+                    displayMaze();
+                    return gameState;
+                }
+                break;
+            }
+            else {
+                cout << "Invalid movement." << endl;
+            }
         }
-        else {
-            cout << "Invalid movement." << endl;
+
+        // update each robot position and checks if game is over
+        for (Robot &robot : robots) {
+            if (robot.isAlive()) {
+                Position playerPos = player.getPosition();
+                Movement delta = robot.minimumPath(playerPos);
+                updateRobot(robot, delta);
+                if (gameOver()) {
+                    displayMaze();
+                    return gameState;
+                }
+            }
         }
     }
     return true;
@@ -76,7 +91,7 @@ void Game::showGameDisplay() const {
     cout << endl;
 }
 
-void Game::updateGameDisplay() {
+void Game::updateGameDisplay(){
     // place player in maze
     gameDisplay.at(player.getRow()).at(player.getCol()) = player.getSymbol();
 
@@ -106,65 +121,140 @@ void Game::clearDisplay() {
         }
 }
 
-bool Game::collide(Robot& robot, Post& post) {
-    if (robot.getCol() == post.getCol() && robot.getRow() == post.getRow())
+void Game::displayMaze() {
+    clearDisplay();
+    updateGameDisplay();
+    showGameDisplay();
+}
+
+bool Game::collide(const Position& pos, const Post& post) {
+    if (pos.col == post.getPosition().col && pos.row == post.getPosition().row)
         return true;
     return false;
 }
 
-bool Game::collide(Robot& robot, Player& player) {
-    if (robot.getCol() == player.getCol() && robot.getRow() == player.getRow())
+bool Game::collide(const Position& pos, const Player& player) {
+    if (pos.col == player.getPosition().col && pos.row == player.getPosition().row)
         return true;
     return false;
 }
 
-bool Game::validMove(Movement& move) {
-    Position newPos = { player.getRow() + move.dRow, player.getCol() + move.dCol };
+bool Game::collide(const Position& pos, const Robot& robot) {
+    if (pos.col == robot.getPosition().col && pos.row == robot.getPosition().row)
+        return true;
+    return false;
+}
+
+bool Game::collide(const Position& pos, const Door& door) {
+    if (pos.col == door.getPosition().col && pos.row == door.getPosition().row)
+        return true;
+    return false;
+}
+
+bool Game::validMove(Movement& delta) {
+    Position newPos = { player.getRow() + delta.dRow, player.getCol() + delta.dCol };
     cout << newPos.row << " " << newPos.col << endl;
-    for(const Post& post : maze.getPosts()) {
-        if (!post.isElectrified() && samePosition(newPos, post.getPosition()))
+    for (const Post& post : maze.getPosts()) {
+        if (!post.isElectrified() && collide(newPos, post))
             return false;
     }
-    for (const Robot& robot : robots) { 
-        if (!robot.isAlive() && samePosition(newPos, robot.getPosition()))
+    for (const Robot& robot : robots) {
+        if (!robot.isAlive() && collide(newPos, robot))
             return false;
     }
     return true;
 }
 
-void Game::updatePlayer(Movement& move) {
-    Position newPos = { player.getRow() + move.dRow, player.getCol() + move.dCol };
+void Game::updatePlayer(Movement& delta) {
+    Position newPlayerPos = { player.getRow() + delta.dRow, player.getCol() + delta.dCol };
     for (const Post& post : maze.getPosts()) {  // check if the player collided with a post
-        if (post.isElectrified() && samePosition(newPos, post.getPosition())) {
+        if (post.isElectrified() && collide(newPlayerPos, post)) {
             player.setAsDead();
-            gameStatus = LOST;
+            gameState = LOST;
             return;
         }
     }
     for (const Robot& robot : robots) {  // check if the player collided with a robot
-        if (robot.isAlive() && samePosition(newPos, robot.getPosition())) {
-            player.move(move);
+        if (robot.isAlive() && collide(newPlayerPos, robot)) {
+            player.move(newPlayerPos);
             player.setAsDead();
-            gameStatus = LOST;
+            gameState = LOST;
             return;
         }
     }
     for (const Door& door : maze.getDoors()) {  // check if the player entered a door
-        if (samePosition(newPos, door.getPosition())) {
+        if (collide(newPlayerPos, door)) {
             maze.remove(door); // erase the exit door use by the player
-            player.move(move);
-            gameStatus = WON;
+            player.move(newPlayerPos);
+            gameState = WON;
             return;
         }
     }
-    player.move(move);
-    gameStatus = RUNNING;
+    player.move(newPlayerPos);
+    gameState = RUNNING;
     return;
 }
 
-bool Game::samePosition(const Position& p1, const Position& p2) const {
-    if (p1.col == p2.col && p1.row == p2.row)
+void Game::updateRobot(Robot &robot,  Movement& delta) {
+    Position newRobotPos = { robot.getRow() + delta.dRow, robot.getCol() + delta.dCol };
+    for (Post& post : maze.getPosts()) {  // check if the robot collided with a post
+        if (collide(newRobotPos, post)) {
+            if (post.isElectrified()) {
+                maze.changePost(post);
+            }
+            else {
+                maze.remove(post);
+                robot.move(newRobotPos);
+            }
+            robot.setAsDead();
+            robotsAlive();
+            return;
+        }
+    }
+    for (Robot& rb : robots) {  // check if the robot collided with another robot
+        if (collide(newRobotPos, rb)) {
+            if (rb.isAlive()) {
+                rb.setAsDead();
+            }
+            remove(robot);
+            robotsAlive();
+            return;
+        }
+    }
+    if (collide(newRobotPos, player)) {
+        player.setAsDead();
+        gameState = LOST;
+        return;
+    }
+    robot.move(newRobotPos);
+    gameState = RUNNING;
+    return;
+}
+
+void Game::robotsAlive() const {
+    for (const Robot& robot : robots) {
+        if (robot.isAlive()) {
+            gameState = RUNNING;
+            return;
+        }
+    }
+    gameState = WON;
+    return;
+}
+
+void Game::remove(Robot& robotA) {
+    int index = 0;
+    for (Robot& robotB : robots) {
+        if (robotA.getID() == robotB.getID())
+            robots.erase(robots.begin() + index);
+        index++;
+    }
+}
+
+bool Game::gameOver() const {
+    if (gameState == WON || gameState == LOST)
         return true;
-    return false;
+    else if (gameState == RUNNING)
+        return false;
 }
 

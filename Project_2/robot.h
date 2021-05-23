@@ -14,10 +14,10 @@ class Robot {
 		int getCol() const;
 		Position getPosition() const;
 		bool isAlive() const;
-		void setRow(int x);
-		void setCol(int y);
-		void setPosition(const Position& pos);
 		void setAsDead();
+		void move(const Movement delta);
+		void move(const Position& position);
+		Movement minimumPath(Position &pl) const;
 		//other methods
 	private:
 		static int robotCounter; //used to attribute automatically the id to the robots

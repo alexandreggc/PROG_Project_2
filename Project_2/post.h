@@ -13,6 +13,7 @@ class Post {
 		Position getPosition() const;
 		char getSymbol() const; // get char representation of Post
 		bool isElectrified() const;
+		void setNoElectric();
 		//other methods
 	private:
 		static int postCounter;

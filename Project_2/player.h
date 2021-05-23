@@ -16,6 +16,7 @@ class Player {
 		bool isAlive() const;
 		void setAsDead();
 		void move(Movement delta);
+		void move(Position position);
 
 	private:
 		Movement moveDirection(char dir) const;

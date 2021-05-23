@@ -17,8 +17,8 @@ void Maze::addDoor(const Door& door) {
 
 void Maze::remove(const Post& postA) {
 	int index = 0;
-	for (Post& postA : posts) {
-		if (postA.getID() == postA.getID())
+	for (Post& postB : posts) {
+		if (postB.getID() == postA.getID())
 			posts.erase(posts.begin() + index);
 		index++;
 	}
@@ -33,15 +33,22 @@ void Maze::remove(const Door& doorA) {
 	}
 }
 
+void Maze::changePost(const Post& postA) {
+	for (Post& postB : posts) {
+		if (postB.getID() == postA.getID())
+			postB.setNoElectric();
+	}
+}
+
 int Maze::getnumCols() const {
 	return numCols;
 }
 
-vector<Post> Maze::getPosts() const {
+vector<Post> Maze::getPosts() {
 	return posts;
 }
 
-vector<Door> Maze::getDoors() const {
+vector<Door> Maze::getDoors() {
 	return doors;
 }
 
