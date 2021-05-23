@@ -6,7 +6,8 @@
 class Robot {
 	public:
 		enum State { ALIVE, STUCK, DEAD };
-		Robot(int row, int col, int id, char symbol);
+		Robot();
+		Robot(int row, int col, char symbol);
 		int getID() const;
 		char getSymbol() const; // get char representation of robot (R if alive, r if dead)
 		int getRow() const;

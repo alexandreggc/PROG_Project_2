@@ -9,8 +9,3 @@ struct Movement
 {
 	int dRow, dCol;
 };
-
-struct Door {
-	char chr;
-	int row, col;
-};

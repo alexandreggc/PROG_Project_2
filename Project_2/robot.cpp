@@ -3,12 +3,19 @@
 
 using namespace std;
 
-Robot::Robot(int row, int col, int id, char symbol) {
+int Robot::robotCounter = 1;
+
+Robot::Robot() {
+	robotCounter = 1;
+}
+
+Robot::Robot(int row, int col, char symbol) {
 	this->row = row;
 	this->col = col;
-	this->id = id;
+	this->id = robotCounter;
 	this->symbol = symbol;
 	alive = true;
+	robotCounter++;
 }
 
 int Robot::getID() const {

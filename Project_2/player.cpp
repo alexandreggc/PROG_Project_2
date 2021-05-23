@@ -64,3 +64,12 @@ char Player::getSymbol() const {
 bool Player::isAlive() const {
     return alive;
 }
+
+void Player::setAsDead() {
+    alive = false;
+}
+
+void Player::move(Movement delta) {
+    row += delta.dRow;
+    col += delta.dCol;
+}

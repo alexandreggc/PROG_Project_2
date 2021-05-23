@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Project_1\Project\main.cpp" />
+    <ClCompile Include="door.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="maze.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="robot.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="door.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="maze.h" />
     <ClInclude Include="player.h" />

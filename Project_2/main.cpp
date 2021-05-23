@@ -84,7 +84,13 @@ int main(){
                     if (file.is_open() && file.good()) {
                         file.close();
                         Game game = Game(maze_name); // create game object
-                        game.play();
+                        if (game.play()) {
+                            cout << "You Won!" << endl;
+                        }
+                        else {
+                            cout << "You Lost!" << endl;
+                        }
+                        break;
                     }
                     else {
                         cerr << "Maze file not found!" << endl;

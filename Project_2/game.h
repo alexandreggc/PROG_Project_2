@@ -15,6 +15,8 @@ using namespace std;
 
 class Game {
 	public:
+		enum Status { WON, LOST, RUNNING};
+		static int gameStatus;
 		Game(const string& filename);
 		// This constructor should initialize the Maze, the vector of Robots, and the Player,
 		// using the chars read from the file
@@ -23,9 +25,11 @@ class Game {
 		void showGameDisplay() const;
 		void updateGameDisplay();
 		void buildDisplay();
+		void clearDisplay();
 		bool collide(Robot& robot, Post& post); // check if robot collided with post (and possibly set it as dead)
 		bool collide(Robot& robot, Player& player); // check if human and robot collided (and possibly set human as dead)
 		bool validMove(Movement& move);
+		void updatePlayer(Movement& move);
 		bool samePosition(const Position& p1, const Position& p2) const;
 		// other methods, for example:
 		// to check if player is trying to move to a valid place
@@ -38,7 +42,6 @@ class Game {
 		Maze maze;
 		Player player;
 		vector<Robot> robots;
-		vector<Door> doors;
 		//other attributes
 };
 
