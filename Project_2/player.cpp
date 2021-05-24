@@ -4,13 +4,19 @@
 
 using namespace std;
 
-Player::Player() {}
+Player::Player() {
+    row = NULL;
+    col = NULL;
+    symbol = NULL;
+    alive = NULL;
+}
 
 Player::Player(int row, int col, char symbol) {
 	this->row = row;
 	this->col = col;
 	this->symbol = 'H';
 	this->alive = true;
+    setKeys();
 }
 
 Movement Player::input() {
@@ -36,16 +42,8 @@ Position Player::getPosition() const{
     return {row, col};
 }
 
-Movement Player::moveDirection(char dir) const{
-    if (dir == 'Q') return { -1, -1 };
-    if (dir == 'W') return { -1, 0 };
-    if (dir == 'E') return { -1, 1 };
-    if (dir == 'A') return { 0, -1 };
-    if (dir == 'S') return { 0, 0 };
-    if (dir == 'D') return { 0, 1 };
-    if (dir == 'Z') return { 1, -1 };
-    if (dir == 'X') return { 1, 0 };
-    if (dir == 'C') return { 1, 1 };
+Movement Player::moveDirection(char key){
+    return keys[key];
 }
 
 int Player::getRow() const {
@@ -72,4 +70,16 @@ void Player::setAsDead() {
 void Player::move(Position position) {
     row = position.row;
     col = position.col;
+}
+
+void Player::setKeys() {
+    keys['Q'] = { -1,-1 };
+    keys['W'] = { -1, 0 };
+    keys['E'] = { -1, 1 };
+    keys['A'] = { 0, -1 };
+    keys['S'] = { 0, 0 };
+    keys['D'] = { 0, 1 };
+    keys['Z'] = { 1, -1 };
+    keys['X'] = { 1, 0 };
+    keys['C'] = { 1, 1 };
 }

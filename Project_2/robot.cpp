@@ -1,5 +1,6 @@
 #include "structs.h"
 #include "robot.h"
+#include <iostream>
 
 using namespace std;
 
@@ -7,6 +8,11 @@ int Robot::robotCounter = 1;
 
 Robot::Robot() {
 	robotCounter = 1;
+    row = NULL;
+    col = NULL;
+    id = NULL;
+    symbol = NULL;
+    alive = NULL;
 }
 
 Robot::Robot(int row, int col, char symbol) {

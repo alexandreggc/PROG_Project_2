@@ -1,6 +1,9 @@
 #include "maze.h"
 
-Maze::Maze() {}
+Maze::Maze() {
+	numCols = NULL;
+	numRows = NULL;
+}
 
 Maze::Maze(int numRows, int numCols) {
 	this->numRows = numRows;
@@ -44,11 +47,11 @@ int Maze::getnumCols() const {
 	return numCols;
 }
 
-vector<Post> Maze::getPosts() {
+std::vector<Post> Maze::getPosts() {
 	return posts;
 }
 
-vector<Door> Maze::getDoors() {
+std::vector<Door> Maze::getDoors() {
 	return doors;
 }
 

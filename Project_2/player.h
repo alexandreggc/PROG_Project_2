@@ -2,6 +2,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <vector>
+#include <map>
 #include "structs.h"
 
 class Player {
@@ -16,9 +17,11 @@ class Player {
 		bool isAlive() const;
 		void setAsDead();
 		void move(Position position);
+		void setKeys();
 
 	private:
-		Movement moveDirection(char dir) const;
+		std::map<char, Movement> keys;
+		Movement moveDirection(char dir);
 		int row, col;
 		bool alive;
 		char symbol;

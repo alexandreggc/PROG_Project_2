@@ -1,10 +1,15 @@
 #include "structs.h"
 #include "post.h"
+#include <iostream>
 
 int Post::postCounter = 1;
 
 Post::Post() {
 	postCounter = 1;
+	row = NULL;
+	col = NULL;
+	type = NULL;
+	id = NULL;
 }
 
 Post::Post(int row, int col, char type) {

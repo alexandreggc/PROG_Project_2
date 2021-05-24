@@ -11,13 +11,11 @@
 #include "player.h"
 #include "maze.h"
 
-using namespace std;
-
 class Game {
 	public:
 		enum State { LOST, WON, RUNNING};
 		static int gameState;
-		Game(const string& filename);
+		Game(const std::string& filename);
 		// This constructor should initialize the Maze, the vector of Robots, and the Player,
 		// using the chars read from the file
 		bool play(); // implements the game loop; returns true if player wins, false otherwise
@@ -42,11 +40,11 @@ class Game {
 		// to check if two robots collide (and possibly set them as dead)
 		// etc.
 	private:
-		fstream file;
-		vector<vector<char>> gameDisplay;
+		std::fstream file;
+		std::vector<std::vector<char>> gameDisplay;
 		Maze maze;
 		Player player;
-		vector<Robot> robots;
+		std::vector<Robot> robots;
 		//other attributes
 };
 

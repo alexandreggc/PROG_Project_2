@@ -1,10 +1,16 @@
 #include "door.h"
+#include <iostream>
+
 using namespace std;
 
 int Door::doorCounter = 1;
 
 Door::Door() {
 	doorCounter = 1;
+	row = NULL;
+	col = NULL;
+	chr = NULL;
+	id = NULL;
 }
 
 Door::Door(int row, int col, char chr) {

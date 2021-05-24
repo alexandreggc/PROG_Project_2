@@ -6,8 +6,6 @@
 #include "robot.h"
 #include <vector>
 
-using namespace std;
-
 class Maze {
 	public:
 		Maze();
@@ -19,13 +17,13 @@ class Maze {
 		void changePost(const Post& post);
 		int getnumRows() const;
 		int getnumCols() const;
-		vector<Post> getPosts();
-		vector<Door> getDoors();
+		std::vector<Post> getPosts();
+		std::vector<Door> getDoors();
 		// other methods
 	private:
 		int numRows, numCols;
-		vector<Post> posts;
-		vector<Door> doors;
+		std::vector<Post> posts;
+		std::vector<Door> doors;
 };
 
 #endif
