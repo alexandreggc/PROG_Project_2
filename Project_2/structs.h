@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 struct Position
 {
 	int row, col;
@@ -8,4 +10,9 @@ struct Position
 struct Movement
 {
 	int dRow, dCol;
+};
+
+struct NameAndTime {
+    std::string name;
+    int time;
 };

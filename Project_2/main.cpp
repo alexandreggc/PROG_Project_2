@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "game.h"
+#include "leaderboard.h"
 
 using namespace std;
 
@@ -48,6 +49,14 @@ string file_str(const char file, int maze_number) {
     return filename + ".txt";
 }
 
+double timer() {
+    time_t current_time;
+    double seconds;
+    time(&current_time);
+    seconds = difftime(current_time, 0);
+    return seconds;
+}
+
 int main(){
     int opt;
     cout << "Welcome to Robots Game!" << endl;
@@ -62,7 +71,7 @@ int main(){
         // player chooses the option
         while (true) {
             cin >> opt;
-            if (cin.peek() == '\n' && !cin.fail() && (opt == 0 || opt == 1 || opt == 2)) {
+            if (cin.peek() == '\n' && !cin.fail() && (opt == 0 || opt == 1 || opt == 2 || opt == 3)) {
                 break;
             }
             else if (cin.fail() && cin.eof()) exit(0);
@@ -80,12 +89,17 @@ int main(){
                         break;
 
                     string maze_name = file_str('m', mz_num);
+                    string winners_filename = file_str('w', mz_num);
                     fstream file(maze_name);
                     if (file.is_open() && file.good()) {
                         file.close();
                         Game game = Game(maze_name); // create game object
+                        double start_time = timer();
                         if (game.play()) {
                             cout << "You Won!" << endl;
+                            double final_time = difftime(timer(), start_time);
+                            Leaderboard leaderboard_after(final_time, winners_filename);
+                            leaderboard_after.showLeaderboard();
                         }
                         else {
                             cout << "You Lost!" << endl;
