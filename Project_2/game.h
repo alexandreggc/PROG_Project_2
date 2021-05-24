@@ -1,15 +1,14 @@
 #pragma once
 #ifndef GAME_H
 #define GAME_H
-
-#include <fstream>
-#include <vector>
-#include <string>
-
 #include "structs.h"
 #include "robot.h"
 #include "player.h"
 #include "maze.h"
+
+#include <fstream>
+#include <vector>
+#include <string>
 
 class Game {
 	public:

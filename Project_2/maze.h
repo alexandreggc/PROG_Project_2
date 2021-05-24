@@ -3,7 +3,7 @@
 #define MAZE_H
 #include "door.h"
 #include "post.h"
-#include "robot.h"
+
 #include <vector>
 
 class Maze {

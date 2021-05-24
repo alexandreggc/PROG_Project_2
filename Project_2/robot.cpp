@@ -7,7 +7,7 @@ using namespace std;
 int Robot::robotCounter = 1;
 
 Robot::Robot() {
-	robotCounter = 1;
+	robotCounter = 1; // reset robot counter
     row = NULL;
     col = NULL;
     id = NULL;
@@ -82,4 +82,5 @@ Movement Robot::minimumPath(Position &pl) const {
         if (row < pl.row)
             return { 1, 0 };
     }
+    return { NULL, NULL };
 }

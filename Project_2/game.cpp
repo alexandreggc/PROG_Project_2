@@ -106,6 +106,7 @@ void Game::updateGameDisplay(){
     }
 }
 
+// build an empty game display
 void Game::buildDisplay() {
     char empty = ' ';
     vector<char> line(maze.getnumCols(), ' ');
@@ -114,6 +115,7 @@ void Game::buildDisplay() {
     }
 }
 
+// clear all objects from game display
 void Game::clearDisplay() {
     for (vector<char> &ln : gameDisplay)
         for (size_t i = 0; i < ln.size(); i++) {
@@ -127,6 +129,7 @@ void Game::displayMaze() {
     showGameDisplay();
 }
 
+// check collision between a position and a post
 bool Game::collide(const Position& pos, const Post& post) {
     if (pos.col == post.getPosition().col && pos.row == post.getPosition().row)
         return true;
@@ -151,7 +154,8 @@ bool Game::collide(const Position& pos, const Door& door) {
     return false;
 }
 
-bool Game::validMove(Movement& delta) {
+// check if delta movement is a valid player movement
+bool Game::validMove(Movement& delta) { 
     Position newPos = { player.getRow() + delta.dRow, player.getCol() + delta.dCol };
     cout << newPos.row << " " << newPos.col << endl;
     for (const Post& post : maze.getPosts()) {
@@ -165,7 +169,8 @@ bool Game::validMove(Movement& delta) {
     return true;
 }
 
-void Game::updatePlayer(Movement& delta) {
+// update player position and checks his collisions
+void Game::updatePlayer(Movement& delta) { 
     Position newPlayerPos = { player.getRow() + delta.dRow, player.getCol() + delta.dCol };
     for (const Post& post : maze.getPosts()) {  // check if the player collided with a post
         if (post.isElectrified() && collide(newPlayerPos, post)) {
@@ -190,12 +195,14 @@ void Game::updatePlayer(Movement& delta) {
             return;
         }
     }
+    // if player didn't collide with anything then move
     player.move(newPlayerPos);
     gameState = RUNNING;
     return;
 }
 
-void Game::updateRobot(Robot &robot,  Movement& delta) {
+// update robot position and checks his collisions
+void Game::updateRobot(Robot &robot,  Movement& delta) { 
     Position newRobotPos = { robot.getRow() + delta.dRow, robot.getCol() + delta.dCol };
     for (Post& post : maze.getPosts()) {  // check if the robot collided with a post
         if (collide(newRobotPos, post)) {
@@ -220,16 +227,18 @@ void Game::updateRobot(Robot &robot,  Movement& delta) {
             return;
         }
     }
-    if (collide(newRobotPos, player)) {
+    if (collide(newRobotPos, player)) { // check if the robot collided with player
         player.setAsDead();
         gameState = LOST;
         return;
     }
+    // if robot didn't collide with anything then move
     robot.move(newRobotPos);
     gameState = RUNNING;
     return;
 }
 
+// check if there are any robots alive if not then player won
 void Game::robotsAlive() const {
     for (const Robot& robot : robots) {
         if (robot.isAlive()) {
@@ -241,6 +250,7 @@ void Game::robotsAlive() const {
     return;
 }
 
+// returns true if the game ended if not returns false and the game continues
 bool Game::gameOver() const {
     if (gameState == WON || gameState == LOST)
         return true;

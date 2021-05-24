@@ -1,9 +1,10 @@
 #pragma once
 #ifndef PLAYER_H
 #define PLAYER_H
+#include "structs.h"
+
 #include <vector>
 #include <map>
-#include "structs.h"
 
 class Player {
 	public:

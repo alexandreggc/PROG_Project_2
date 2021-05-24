@@ -6,7 +6,7 @@ using namespace std;
 int Door::doorCounter = 1;
 
 Door::Door() {
-	doorCounter = 1;
+	doorCounter = 1; // reset door counter
 	row = NULL;
 	col = NULL;
 	chr = NULL;

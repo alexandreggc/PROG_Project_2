@@ -5,7 +5,7 @@
 int Post::postCounter = 1;
 
 Post::Post() {
-	postCounter = 1;
+	postCounter = 1; // reset post counter
 	row = NULL;
 	col = NULL;
 	type = NULL;
