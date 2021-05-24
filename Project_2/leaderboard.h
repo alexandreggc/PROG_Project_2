@@ -26,7 +26,7 @@ class Leaderboard {
         void vectors_to_file();
         string winner_name();
         string cmp_names(const string name1,const string name2);
-        void switch_pos(vector<NameAndTime>& winners, int i);
+        void switch_pos(int i);
     private:
         double final_time;
         string winners_filename;

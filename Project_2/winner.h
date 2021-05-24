@@ -10,8 +10,8 @@ class Winner {
         Winner(std::string name, double time);
         std::string getName();
         double getTime();
-        void setName();
-        void setTime();
+        void setName(string Name);
+        void setTime(double Time);
     private:
         std::string name;
         double time;
