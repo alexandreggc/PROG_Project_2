@@ -1,0 +1,34 @@
+In this game the player is placed in a maze made up of high-voltage fences and posts,
+some of this are electrified posts represented by '*' and others non-electrified represented by '+'.
+There are also some exit doors that the player can enter to escape the maze and win the game.
+
+There are also some interceptor robots that will try to destroy the player. If the player touches the 
+maze or any of these robots, that is the end of the game and the player is represented by 'h'. The
+robots are also destroyed when they touch the fences/posts or when they collide with each other.
+
+If they collide with an eletrified post they stay in the same position and that post loses its 
+capability of electrocution. However, if the collision is with a non-electrified post then the robot
+takes its position. In the case that two robots collide they are represented by only one destroyed
+robot 'r'. If all of them are destroyed, the player wins the game.
+
+Every time the player moves in any direction (horizontally, vertically, or diagonally) to a
+contiguous cell, each robot moves one cell closer to the new player's location, in whichever
+direction is the shortest path.
+The robots have no vision sensors but they have an accurate odor sensor that allows
+them to follow the player!
+
+We wish you good luck...
+
+
+CONTROLS:
+
+You can move the player character or stay in the same position by pressing the key correspoding
+to the direction you want to go, according to the following scheme:
+
+
+	Q [up & left]       W [up]         E [up & right]
+	A [left]            S [stay]       D [right]
+	Z [down & left]     X [down]       C [down & right]
+
+
+Press 0 to return to the main menu.
