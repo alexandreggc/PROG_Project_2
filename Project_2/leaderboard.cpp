@@ -47,9 +47,8 @@ void Leaderboard::addWinner(const int time) {
             if (time < winner.getTime()) {
                 winner.setTime(time);
                 updateFile();
-                return;
             }
-            else return;
+            return;
         }
     }
     Winner winner(name, time);

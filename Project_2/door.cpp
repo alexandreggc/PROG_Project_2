@@ -1,8 +1,6 @@
 #include "door.h"
 #include <iostream>
 
-using namespace std;
-
 int Door::doorCounter = 1;
 
 Door::Door() {
@@ -17,7 +15,7 @@ Door::Door(int row, int col, char chr) {
 	this->row = row;
 	this->col = col;
 	this->chr = chr;
-	this->id = doorCounter;
+	id = doorCounter;
 	doorCounter++;
 }
 

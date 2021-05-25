@@ -18,10 +18,10 @@ Robot::Robot() {
 Robot::Robot(int row, int col, char symbol) {
 	this->row = row;
 	this->col = col;
-	this->id = robotCounter;
 	this->symbol = symbol;
 	alive = true;
-	robotCounter++;
+    id = robotCounter;
+    robotCounter++;
 }
 
 int Robot::getID() const {

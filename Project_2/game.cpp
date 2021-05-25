@@ -16,7 +16,7 @@ Game::Game(const string& filename) {
     int rows, cols;
     char c;
     file >> rows >> c >> cols;  // get number of rows and columns of the maze
-    file.ignore(numeric_limits<streamsize>::max(), '\n');
+    file.ignore(numeric_limits<streamsize>::max(), '\n'); // ignore the rest of the first line
     maze = Maze(rows, cols);
 
     for (int row = 0; row < rows; row++) {
@@ -105,7 +105,7 @@ void Game::updateGameDisplay(){
     }
 }
 
-// build an empty game display
+// build an empty game display vector
 void Game::buildDisplay() {
     char empty = ' ';
     vector<char> line(maze.getnumCols(), ' ');
@@ -114,7 +114,7 @@ void Game::buildDisplay() {
     }
 }
 
-// clear all objects from game display
+// clear all objects from game display vector
 void Game::clearDisplay() {
     for (vector<char> &ln : gameDisplay)
         for (size_t i = 0; i < ln.size(); i++) {
@@ -128,25 +128,28 @@ void Game::displayMaze() {
     showGameDisplay();
 }
 
-// check collision between a position and a post
+// check collision between a specified position and a post
 bool Game::collide(const Position& pos, const Post& post) {
     if (pos.col == post.getPosition().col && pos.row == post.getPosition().row)
         return true;
     return false;
 }
 
+// check collision between a specified position and the player
 bool Game::collide(const Position& pos, const Player& player) {
     if (pos.col == player.getPosition().col && pos.row == player.getPosition().row)
         return true;
     return false;
 }
 
+// check collision between a specified position and a robot
 bool Game::collide(const Position& pos, const Robot& robot) {
     if (pos.col == robot.getPosition().col && pos.row == robot.getPosition().row)
         return true;
     return false;
 }
 
+// check collision between a specified position and a door
 bool Game::collide(const Position& pos, const Door& door) {
     if (pos.col == door.getPosition().col && pos.row == door.getPosition().row)
         return true;
@@ -257,4 +260,3 @@ bool Game::gameOver() const {
         return false;
     return false;
 }
-
