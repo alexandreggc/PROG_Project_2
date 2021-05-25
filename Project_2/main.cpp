@@ -19,7 +19,7 @@ int main(){
             }
             case 2: {
                 while (true) {
-                    if (menu.mazeNumber() == 0) break;
+                    if (menu.mazeNumber() == 0) break; // if user enter 0 return to main menu
 
                     menu.chooseMazeFile();
                     menu.chooseWinnersFile();
@@ -52,7 +52,7 @@ int main(){
             }
             case 3:
                 while (true) {
-                    if (menu.mazeNumber() == 0) break;
+                    if (menu.mazeNumber() == 0) break; // if user enter 0 return to main menu
                     menu.chooseWinnersFile();
                     Leaderboard ldBoard(menu.getWinners());
 

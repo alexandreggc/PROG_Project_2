@@ -19,6 +19,7 @@ Game::Game(const string& filename) {
     file.ignore(numeric_limits<streamsize>::max(), '\n'); // ignore the rest of the first line
     maze = Maze(rows, cols);
 
+    // search for all the maze elements and create new objects for them
     for (int row = 0; row < rows; row++) {
         for (int col = 0; col < cols; col++) {
             file.get(c);
@@ -43,6 +44,7 @@ Game::Game(const string& filename) {
 
 }
 
+// gameloop functions that return true if player won otherwise return false 
 bool Game::play() {
     gameState = RUNNING;
     buildDisplay();
@@ -80,6 +82,7 @@ bool Game::play() {
     return true;
 }
 
+// display the maze elements in console
 void Game::showGameDisplay() const {
     for (vector<char> vct : gameDisplay) {
         cout << endl;
@@ -90,6 +93,7 @@ void Game::showGameDisplay() const {
     cout << endl;
 }
 
+// update the game display vector with all maze characthers
 void Game::updateGameDisplay(){
     // place player in maze
     gameDisplay.at(player.getRow()).at(player.getCol()) = player.getSymbol();
@@ -122,6 +126,7 @@ void Game::clearDisplay() {
         }
 }
 
+// display updated maze in console
 void Game::displayMaze() {
     clearDisplay();
     updateGameDisplay();

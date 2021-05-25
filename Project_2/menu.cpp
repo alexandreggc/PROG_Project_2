@@ -9,6 +9,9 @@ using namespace std;
 Menu::Menu() {
     cout << "Welcome to Robots Game!" << endl;
     option = NULL;
+    mazenumber = NULL;
+    startTime = NULL;
+    finalTime = NULL;
 }
 
 void Menu::display() const {

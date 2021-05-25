@@ -58,6 +58,7 @@ void Robot::move(const Position& position) {
     col = position.col;
 }
 
+// return the movement that a robot has to make to get closer to the player position
 Movement Robot::minimumPath(Position &pl) const {
     if (col > pl.col) {
         if (row > pl.row)

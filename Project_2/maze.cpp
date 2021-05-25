@@ -10,7 +10,7 @@ Maze::Maze(int numRows, int numCols) {
 	this->numCols = numCols;
 }
 
-void Maze::addPost(const Post& post){ //, const Position& position) { 
+void Maze::addPost(const Post& post){
 	posts.push_back(post);
 }
 
@@ -18,6 +18,7 @@ void Maze::addDoor(const Door& door) {
 	doors.push_back(door);
 }
 
+// remove post from posts vector
 void Maze::remove(const Post& postA) {
 	int index = 0;
 	for (Post& postB : posts) {
@@ -27,6 +28,7 @@ void Maze::remove(const Post& postA) {
 	}
 }
 
+// remove door from doors vector
 void Maze::remove(const Door& doorA) {
 	int index = 0;
 	for (Door& doorB : doors) {
@@ -36,6 +38,7 @@ void Maze::remove(const Door& doorA) {
 	}
 }
 
+// change a post from electrified to non_electrified
 void Maze::changePost(const Post& postA) {
 	for (Post& postB : posts) {
 		if (postB.getID() == postA.getID())

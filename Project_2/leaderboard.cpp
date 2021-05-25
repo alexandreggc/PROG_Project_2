@@ -76,10 +76,14 @@ void Leaderboard::buildWinners() {
         getline(file, line, '\n');
         if (file.eof()) break;
 
+        // gets the substring of a file line containing the winner name
         name = line.substr(NAME_BEG, NAME_SIZE);
+
+        // gets the substring of a file line containing the winner time and converts it to integer
         time = stoi(line.substr(TIME_BEG, TIME_SIZE));
+
         Winner winner(name, time);
-        winners.push_back(winner);
+        winners.push_back(winner); // add file winners to winners vector
     }
     file.close();
 }
@@ -96,6 +100,7 @@ void Leaderboard::buildFile() {
     file << "----------------------\n";
     for (Winner winner : winners) {
         stringstream winner_s, time_s;
+        // adjust text in proper format to upload to file
         winner_s << left << setfill(' ') << setw(NAME_SIZE) << winner.getName();
         time_s << setfill(' ') << setw(TIME_SIZE) << to_string(winner.getTime());
         file << winner_s.str() << " - " << time_s.str() << "\n";
