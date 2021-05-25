@@ -11,8 +11,3 @@ struct Movement
 {
 	int dRow, dCol;
 };
-
-struct NameAndTime {
-    std::string name;
-    int time;
-};

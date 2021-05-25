@@ -1,22 +1,20 @@
 #pragma once
-#ifndef WINNER_H_INCLUDED
-#define WINNER_H_INCLUDED
+#ifndef WINNER_H
+#define WINNER_H
 
-#include "structs.h"
 #include <string>
 
 class Winner {
     public:
-        Winner(std::string name, double time);
+        Winner(std::string name, int time);
         std::string getName();
-        double getTime();
-        void setName(string Name);
-        void setTime(double Time);
+        int getTime();
+        void setTime(int time);
+        bool operator<(const Winner& winner);
+        bool operator==(const Winner& winner);
     private:
         std::string name;
-        double time;
+        int time;
 };
 
-
-
-#endif // WINNER_H_INCLUDED
+#endif

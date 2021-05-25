@@ -1,39 +1,35 @@
 #pragma once
-#ifndef LEADERBOARD_H_INCLUDED
-#define LEADERBOARD_H_INCLUDED
+#ifndef LEADERBOARD_H
+#define LEADERBOARD_H
 
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <sstream>
 #include <iomanip>
+#include <string>
 
-#include "structs.h"
 #include "winner.h"
-
-using namespace std;
 
 class Leaderboard {
     public:
-        Leaderboard(double final_time, const string& filename);
-        void showLeaderboard();
+        Leaderboard(const std::string filename);
+        void display() const;
+        void createFile() const;
+        bool exists() const;
+        void addWinner(const int time);
     private:
-        void winners_file();
-        void new_winner();
-        void file_to_vectors();
-        void sort_winners();
-        void del_duplicate();
-        void vectors_to_file();
-        string winner_name();
-        string cmp_names(const string name1,const string name2);
-        void switch_pos(int i);
+        void updateFile();
+        void buildWinners();
+        void sortWinners();
+        void buildFile();
+        std::string winnerName();
+        bool emptyName(std::string name);
     private:
-        double final_time;
-        string winners_filename;
-        vector<Winner> winners;
-        Winner winner;
-
+        // maximum values for name and time string size
+        const int NAME_BEG = 0, NAME_SIZE = 15, TIME_BEG = 18, TIME_SIZE = 4;
+        std::string filename;
+        std::vector<Winner> winners;
 };
 
-
-#endif // LEADERBOARD_H_INCLUDED
+#endif

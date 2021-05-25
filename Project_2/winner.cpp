@@ -6,7 +6,7 @@
 
 using namespace std;
 
-Winner::Winner(string name, double time){
+Winner::Winner(string name, int time){
     this->name = name;
     this->time = time;
 }
@@ -15,14 +15,29 @@ string Winner::getName() {
     return name;
 }
 
-double Winner::getTime() {
+int Winner::getTime() {
     return time;
 }
 
-void Winner::setName(string name) {
-    this->name = name;
-}
-
-void Winner::setTime(double time) {
+void Winner::setTime(int time) {
     this->time = time;
 }
+
+bool Winner::operator<(const Winner& w) {
+	if (this->time < w.time)
+		return true;
+	else if (this->time > w.time)
+		return false;
+	else
+		if (this->name < w.name)
+			return true;
+		else
+			return false;
+}
+
+bool Winner::operator==(const Winner& w) {
+	if (this->name == w.name)
+		return true;
+	return false;
+}
+

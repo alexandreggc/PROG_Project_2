@@ -49,6 +49,7 @@ string file_str(const char file, int maze_number) {
     return filename + ".txt";
 }
 
+// count the time in seconds
 double timer() {
     time_t current_time;
     double seconds;
@@ -65,6 +66,7 @@ int main(){
         cout << endl;
         cout << "1) Rules" << endl;
         cout << "2) Play" << endl;
+        cout << "3) Winners" << endl;
         cout << "0) Exit" << endl;
         cout << endl;
 
@@ -84,22 +86,27 @@ int main(){
                 break;
             case 2: {
                 while (true) {
-                    int mz_num = maze_number();
-                    if (mz_num == 0)
-                        break;
+                    int mzNum = maze_number();
+                    if (mzNum == 0) break;
 
-                    string maze_name = file_str('m', mz_num);
-                    string winners_filename = file_str('w', mz_num);
-                    fstream file(maze_name);
-                    if (file.is_open() && file.good()) {
+                    string mazeName = file_str('m', mzNum);
+                    string winnerFilename = file_str('w', mzNum);
+                    fstream file(mazeName);
+
+                    if (file.is_open() && file.good()) { // if file exists then start the game
                         file.close();
-                        Game game = Game(maze_name); // create game object
-                        double start_time = timer();
+
+                        Game game = Game(mazeName); // create game object
+                        double startTime = timer();
+
                         if (game.play()) {
-                            cout << "You Won!" << endl;
-                            double final_time = difftime(timer(), start_time);
-                            Leaderboard leaderboard_after(final_time, winners_filename);
-                            leaderboard_after.showLeaderboard();
+                            cout << endl << "Congratulations! You Won!" << endl;
+                            double finalTime = difftime(timer(), startTime);
+                            Leaderboard ldBoard(winnerFilename);
+                            if (!ldBoard.exists())
+                                ldBoard.createFile();
+                            ldBoard.addWinner((int)finalTime);
+                            ldBoard.display();
                         }
                         else {
                             cout << "You Lost!" << endl;
@@ -112,6 +119,20 @@ int main(){
                 }
                 break;
             }
+            case 3:
+                while (true) {
+                    int mz_num = maze_number();
+                    if (mz_num == 0) break;
+                    string winners_filename = file_str('w', mz_num);
+                    Leaderboard ldBoard(winners_filename);
+
+                    if (ldBoard.exists())
+                        ldBoard.display();
+                    else
+                        cout << endl << "Empty list." << endl;
+                    break;
+                }
+                break;
             case 0:
                 exit(0); // exit game
             default:

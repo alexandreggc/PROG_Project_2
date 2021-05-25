@@ -36,6 +36,12 @@
     <ClCompile Include="door.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="leaderboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="winner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="player.h">
@@ -59,12 +65,24 @@
     <ClInclude Include="door.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="leaderboard.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="winner.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="MAZE_01.txt">
       <Filter>Source Files</Filter>
     </Text>
     <Text Include="MAZE_02.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="MAZE_01_WINNERS.txt">
+      <Filter>Source Files</Filter>
+    </Text>
+    <Text Include="MAZE_02_WINNERS.txt">
       <Filter>Source Files</Filter>
     </Text>
   </ItemGroup>

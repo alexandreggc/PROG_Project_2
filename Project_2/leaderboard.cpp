@@ -2,157 +2,132 @@
 #include "structs.h"
 #include "winner.h"
 
+#include <ios>
 #include <iostream>
 #include <fstream>
 #include <vector>
 #include <sstream>
 #include <iomanip>
+#include <algorithm>
 
 using namespace std;
 
-Leaderboard::Leaderboard(double final_time, const string& filename) {
-    this->final_time = final_time;
-    winners_filename = filename;
+Leaderboard::Leaderboard(const string filename) {
+    this->filename = filename.c_str();
 }
 
-void Leaderboard::showLeaderboard(){
-
-    winners_file();
-    new_winner();
-    file_to_vectors();
-    sort_winners();
-    del_duplicate();
-    vectors_to_file();
-    ifstream file(winners_filename);
-    cout << endl << file.rdbuf() << endl;  // displays leaderboard in console
+// displays leaderboard in console
+void Leaderboard::display() const {
+    ifstream file(filename);
+    cout << endl << file.rdbuf() << endl;
     file.close();
 }
 
-void Leaderboard::winners_file(const string filename) {
-    fstream file(filename.c_str());
-    if (file.is_open() && file.good() == true) { // checks if the file already exists
-        file.close();
-        return;
-    }
-    else {
-        file.close();
-        ofstream f{ filename };  // creates leaderboard file if it doesn't exist
-        fstream file(filename.c_str());
-        file << "Player          - Time\n";
-        file << "----------------------\n";
-        file.close();
-    }
+// creates leaderboard file 
+void Leaderboard::createFile() const {
+    ofstream f{ filename };
 }
 
-string Leaderboard::winner_name() {
-    string name;
-    cout << endl << "Congratulations, you won!" << endl;
-    cout << "What's your name (15 characters maximum)? ";
-    cin.ignore(10000, '\n');
-    while (true) {
-        cin.clear();
-        getline(cin, name, '\n');
-        if (!cin.fail() && name.size() <= 15) {
-            break;
+// returns true if file exists or false if not
+bool Leaderboard::exists() const {
+    fstream file(filename);
+    if (file.is_open() && file.good()) {
+        file.close();
+        return true;
+    }
+    return false;
+}
+
+// adds a winner to the winners vector
+void Leaderboard::addWinner(const int time) {
+    buildWinners();
+    string name = winnerName();
+    for (Winner &winner : winners) {
+        if (winner.getName() == name) {
+            if (time < winner.getTime()) {
+                winner.setTime(time);
+                updateFile();
+                return;
+            }
+            else return;
         }
-        else if (cin.fail() && cin.eof()) exit(0);
-        cout << "Please enter a valid name. ";
     }
-    return name;
+    Winner winner(name, time);
+    winners.push_back(winner);
+    updateFile();
 }
 
-void Leaderboard::new_winner() {
-    stringstream winner_s, final_time_s;
-    winner = Winner(winner_name(), final_time);
-
-    ofstream file(winners_filename, fstream::app);
-    winner_s << left << setfill(' ') << setw(15) << winner.getName();
-    final_time_s << setfill(' ') << setw(4) << to_string((int)winner.getTime());
-    file << winner_s.str() << " - " << final_time_s.str() << "\n";
-    file.close();
+// update the winners file with new and sorted winners
+void Leaderboard::updateFile() {
+    sortWinners();
+    buildFile();
 }
 
-void Leaderboard::file_to_vectors() {
-    const int NAME_BEG = 0, NAME_SIZE = 15, TIME_BEG = 18, TIME_SIZE = 4;
-    string line, name, time;
-    ifstream file(winners_filename);
+// download winners from winners file to winners vector
+void Leaderboard::buildWinners() {
+    int time;
+    string line, name;
+    ifstream file(filename);
 
     file.seekg(ios::beg);
     for (int i = 0; i < 2; i++)
-        file.ignore(10000, '\n');
+        file.ignore(numeric_limits<streamsize>::max(), '\n');
     while (true) {
         file.clear();
         getline(file, line, '\n');
         if (file.eof()) break;
-        winner.setName(line.substr(NAME_BEG, NAME_SIZE));
-        winner.setTime(stoi(line.substr(TIME_BEG, TIME_SIZE)));
+
+        name = line.substr(NAME_BEG, NAME_SIZE);
+        time = stoi(line.substr(TIME_BEG, TIME_SIZE));
+        Winner winner(name, time);
         winners.push_back(winner);
     }
     file.close();
 }
 
-string Leaderboard::cmp_names(const string name1,const string name2) {
-    for (unsigned int i = 0; i < name1.size(); i++) {
-        if (int(name1[i]) < int(name2[i]))
-            return name1;
-        else if (int(name1[i]) > int(name2[i]))
-            return name2;
-    }
-    return name2;
+// sort winners file by name and time order
+void Leaderboard::sortWinners() {
+    sort(winners.begin(), winners.begin() + winners.size());
 }
 
-void Leaderboard::switch_pos(int i) {
-    Winner w = winners.at(i);
-    winners.at(i) = winners.at(i + 1);
-    winners.at(i + 1) = w;
-}
-
-void Leaderboard::sort_winners() {
-    bool not_done = true;
-    while (not_done) {
-        not_done = false;
-        for (int i = 0; i < winners.size() - 1; i++) {
-            string name = cmp_names(winners.at(i).getName, winners.at(i + 1).getName);
-            if (winners.at(i).getTime > winners.at(i + 1).getTime) {
-                not_done = true;
-                switch_pos(winners, i);
-            }
-            if (winners.at(i).getTime == winners.at(i + 1).getTime && winners.at(i).getName != name) {
-                not_done = true;
-                switch_pos(winners, i);
-            }
-        }
-    }
-}
-
-void Leaderboard::del_duplicate() {
-    int i = 0;
-    while (i < winners.size()) {
-        for (int j = i + 1; j <= winners.size() - 1; j++) {
-            if (winners.at(i).getName == winners.at(j).getName) {
-                if (winners.at(i).getTime > winners.at(j).getTime) {
-                    winners.erase(winners.begin() + i);
-                }
-                else {
-                    winners.erase(winners.begin() + j);
-                }
-            }
-        }
-        i += 1;
-    }
-}
-
-void Leaderboard::vectors_to_file() {
-    ofstream file(winners_filename, ofstream::trunc);
+// upload winners from winners vector to the the winners file 
+void Leaderboard::buildFile() {
+    ofstream file(filename, ofstream::trunc);
     file << "Player          - Time\n";
     file << "----------------------\n";
-    for (int i = 0; i < winners.size(); i++) {
+    for (Winner winner : winners) {
         stringstream winner_s, time_s;
-        winner_s << left << setfill(' ') << setw(15) << winners.at(i).getName;
-        time_s << setfill(' ') << setw(4) << to_string(winners.at(i).getTime);
+        winner_s << left << setfill(' ') << setw(NAME_SIZE) << winner.getName();
+        time_s << setfill(' ') << setw(TIME_SIZE) << to_string(winner.getTime());
         file << winner_s.str() << " - " << time_s.str() << "\n";
     }
     file.close();
 }
 
+// ask the winner's name and returns it
+string Leaderboard::winnerName() {
+    string name;
+    cout << endl << "What's your name (15 characters maximum)? ";
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    while (true) {
+        cin.clear();
+        getline(cin, name, '\n');
+        if (!cin.fail() && 0 < name.size() && name.size() <= 15 && !emptyName(name)) {
+            break;
+        }
+        else if (cin.fail() && cin.eof()) exit(0);
+        cout << "Please enter a valid name. ";
+    }
+    stringstream nameS;
+    nameS << left << setfill(' ') << setw(NAME_SIZE) << name;
+    return nameS.str();
+}
 
+// return true is name is empty
+bool Leaderboard::emptyName(string name) {
+    int cnt = 0;
+    for (size_t i = 0; i < name.size(); i++) {
+        if (isspace(name[i])) cnt++;
+    }
+    return (int)name.size()==cnt;
+}

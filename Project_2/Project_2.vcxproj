@@ -141,24 +141,30 @@
   <ItemGroup>
     <ClCompile Include="door.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="leaderboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="maze.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="post.cpp" />
     <ClCompile Include="robot.cpp" />
+    <ClCompile Include="winner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="door.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="leaderboard.h" />
     <ClInclude Include="maze.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="post.h" />
     <ClInclude Include="robot.h" />
     <ClInclude Include="structs.h" />
+    <ClInclude Include="winner.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="MAZE_01.txt" />
+    <Text Include="MAZE_01_WINNERS.txt" />
     <Text Include="MAZE_02.txt" />
+    <Text Include="MAZE_02_WINNERS.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
