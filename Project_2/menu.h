@@ -1,4 +1,6 @@
 #pragma once
+#ifndef MENU_H
+#define MENU_H
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -35,3 +37,4 @@ class Menu {
         double finalTime;
 };
 
+#endif
