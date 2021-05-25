@@ -23,6 +23,7 @@ void Winner::setTime(int time) {
     this->time = time;
 }
 
+// operator to compare two winners used by sort function from algorithm library
 bool Winner::operator<(const Winner& w) {
 	if (this->time < w.time)
 		return true;
@@ -34,10 +35,3 @@ bool Winner::operator<(const Winner& w) {
 		else
 			return false;
 }
-
-bool Winner::operator==(const Winner& w) {
-	if (this->name == w.name)
-		return true;
-	return false;
-}
-

@@ -11,7 +11,6 @@ class Winner {
         int getTime();
         void setTime(int time);
         bool operator<(const Winner& winner);
-        bool operator==(const Winner& winner);
     private:
         std::string name;
         int time;
