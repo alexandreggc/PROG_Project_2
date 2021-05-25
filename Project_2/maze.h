@@ -10,7 +10,7 @@ class Maze {
 	public:
 		Maze();
 		Maze(int numRows, int numCols);
-		void addPost(const Post& post); //, const Position &position);
+		void addPost(const Post& post);
 		void addDoor(const Door& door);
 		void remove(const Post& post);
 		void remove(const Door& door);
@@ -19,7 +19,6 @@ class Maze {
 		int getnumCols() const;
 		std::vector<Post> getPosts();
 		std::vector<Door> getDoors();
-		// other methods
 	private:
 		int numRows, numCols;
 		std::vector<Post> posts;

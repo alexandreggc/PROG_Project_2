@@ -154,6 +154,7 @@
     <ClInclude Include="game.h" />
     <ClInclude Include="leaderboard.h" />
     <ClInclude Include="maze.h" />
+    <ClInclude Include="menuFunc.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="post.h" />
     <ClInclude Include="robot.h" />

@@ -11,17 +11,14 @@ class Post {
 		int getCol() const;
 		int getID() const;
 		Position getPosition() const;
-		char getSymbol() const; // get char representation of Post
+		char getSymbol() const;
 		bool isElectrified() const;
 		void setNoElectric();
-		//other methods
 	private:
-		static int postCounter;
+		static int postCounter; //used to attribute automatically the id to the posts
 		int row, col;
 		int id;
-		char type; // '*' - electrified; '+'- non-electrified
-		// other attributes (?)
-		// could also have a state, like the robot(?)
+		char type;
 };
 
 #endif

@@ -28,8 +28,7 @@ int Robot::getID() const {
 	return id;
 }
 
-char Robot::getSymbol() const
-{
+char Robot::getSymbol() const { // get char representation of robot (R if alive, r if dead)
 	return symbol;
 }
 

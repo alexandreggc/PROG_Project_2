@@ -1,15 +1,10 @@
 #pragma once
 #ifndef LEADERBOARD_H
 #define LEADERBOARD_H
-
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <sstream>
-#include <iomanip>
-#include <string>
-
 #include "winner.h"
+
+#include <vector>
+#include <string>
 
 class Leaderboard {
     public:

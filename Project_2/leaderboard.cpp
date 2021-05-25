@@ -1,8 +1,8 @@
 #include "leaderboard.h"
-#include "structs.h"
 #include "winner.h"
 
 #include <ios>
+#include <limits>
 #include <iostream>
 #include <fstream>
 #include <vector>

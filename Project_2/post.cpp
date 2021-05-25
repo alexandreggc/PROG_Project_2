@@ -1,5 +1,6 @@
 #include "structs.h"
 #include "post.h"
+
 #include <iostream>
 
 int Post::postCounter = 1;
@@ -36,7 +37,7 @@ Position Post::getPosition() const {
 	return {row, col};
 }
 
-char Post::getSymbol() const {
+char Post::getSymbol() const { // get char representation of Post
 	return type;
 }
 

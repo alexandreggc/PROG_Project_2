@@ -8,7 +8,7 @@ class Robot {
 		Robot();
 		Robot(int row, int col, char symbol);
 		int getID() const;
-		char getSymbol() const; // get char representation of robot (R if alive, r if dead)
+		char getSymbol() const; 
 		int getRow() const;
 		int getCol() const;
 		Position getPosition() const;

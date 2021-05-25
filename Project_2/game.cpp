@@ -45,7 +45,6 @@ Game::Game(const string& filename) {
 
 bool Game::play() {
     gameState = RUNNING;
-    cout << maze.getnumRows() << ' ' << maze.getnumCols();
     buildDisplay();
     while (true) {
         displayMaze();
@@ -256,5 +255,6 @@ bool Game::gameOver() const {
         return true;
     else if (gameState == RUNNING)
         return false;
+    return false;
 }
 

@@ -13,9 +13,8 @@ class Door {
 		int getNum() const;
 		Position getPosition() const;
 		char getSymbol() const;
-
 	private:
-		static int doorCounter;
+		static int doorCounter; //used to attribute automatically the id to the doors
 		int row, col;
 		int id;
 		char chr;

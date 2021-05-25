@@ -71,6 +71,9 @@
     <ClInclude Include="winner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="menuFunc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="MAZE_01.txt">
