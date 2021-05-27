@@ -91,5 +91,8 @@
     <Text Include="MAZE_02_WINNERS.txt">
       <Filter>Source Files</Filter>
     </Text>
+    <Text Include="rules.txt">
+      <Filter>Source Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

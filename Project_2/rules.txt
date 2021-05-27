@@ -31,4 +31,6 @@ to the direction you want to go, according to the following scheme:
 	Z [down & left]     X [down]       C [down & right]
 
 
+You can enter CTRL+Z at any time to exit the game.
+
 Press 0 to return to the main menu.
