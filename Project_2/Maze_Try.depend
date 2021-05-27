@@ -1,0 +1,106 @@
+# depslib dependency file v1.0
+1622126107 source:c:\users\user\documents\c c++\maze_try\main.cpp
+	<iostream>
+	"menu.h"
+	"game.h"
+	"leaderboard.h"
+
+1622142216 c:\users\user\documents\c c++\maze_try\game.h
+	"structs.h"
+	"robot.h"
+	"player.h"
+	"maze.h"
+	<fstream>
+	<vector>
+	<string>
+
+1622126107 c:\users\user\documents\c c++\maze_try\structs.h
+	<string>
+
+1622126107 c:\users\user\documents\c c++\maze_try\robot.h
+	"structs.h"
+
+1622126107 c:\users\user\documents\c c++\maze_try\player.h
+	"structs.h"
+	<vector>
+	<map>
+
+1622126107 c:\users\user\documents\c c++\maze_try\maze.h
+	"door.h"
+	"post.h"
+	<vector>
+
+1622126107 c:\users\user\documents\c c++\maze_try\door.h
+	"structs.h"
+
+1622126107 c:\users\user\documents\c c++\maze_try\post.h
+	"structs.h"
+
+1622126107 source:c:\users\user\documents\c c++\maze_try\door.cpp
+	"door.h"
+	<iostream>
+
+1622126107 source:c:\users\user\documents\c c++\maze_try\maze.cpp
+	"maze.h"
+
+1622126107 source:c:\users\user\documents\c c++\maze_try\post.cpp
+	"structs.h"
+	"post.h"
+	<iostream>
+
+1622126107 source:c:\users\user\documents\c c++\maze_try\robot.cpp
+	"structs.h"
+	"robot.h"
+	<iostream>
+
+1622141191 source:c:\users\user\documents\c c++\maze_try\player.cpp
+	"structs.h"
+	"player.h"
+	<iostream>
+
+1622141201 source:c:\users\user\documents\c c++\maze_try\game.cpp
+	"game.h"
+	<iostream>
+	<fstream>
+
+1622126107 c:\users\user\documents\c c++\maze_try\leaderboard.h
+	"winner.h"
+	<vector>
+	<string>
+
+1622126107 source:c:\users\user\documents\c c++\maze_try\leaderboard.cpp
+	"leaderboard.h"
+	"winner.h"
+	<ios>
+	<limits>
+	<iostream>
+	<fstream>
+	<vector>
+	<sstream>
+	<iomanip>
+	<algorithm>
+
+1622126107 c:\users\user\documents\c c++\maze_try\winner.h
+	<string>
+
+1621909822 c:\users\user\documents\c c++\maze_try\menufunc.h
+	<iostream>
+
+1622126107 source:c:\users\user\documents\c c++\maze_try\winner.cpp
+	"leaderboard.h"
+	"structs.h"
+	<iostream>
+	<string>
+
+1622126107 c:\users\user\documents\c c++\maze_try\menu.h
+	<iostream>
+	<fstream>
+	<string>
+	<vector>
+
+1622141209 source:c:\users\user\documents\c c++\maze_try\menu.cpp
+	"menu.h"
+	<iostream>
+	<sstream>
+	<iomanip>
+

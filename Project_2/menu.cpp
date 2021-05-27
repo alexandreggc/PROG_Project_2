@@ -75,7 +75,7 @@ int Menu::waitForKeys(const vector<int>& keys) {
 // clears stream buffer
 void Menu::invalidInput(const string msg) {
     cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cin.ignore(10000, '\n');
     cout << endl << msg << ' ';
 }
 
@@ -101,7 +101,7 @@ void Menu::startTimer() {
 }
 
 // stop timer and store the time
-void Menu::stopTimer() { 
+void Menu::stopTimer() {
     finalTime = difftime(timer(), startTime);
 }
 

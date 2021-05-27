@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Maze_Try" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Maze_Try" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Maze_Try" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add directory="C:/Users/User/Documents/C C++/Maze_Try/game.cpp" />
+		</Compiler>
+		<Unit filename="door.cpp" />
+		<Unit filename="door.h" />
+		<Unit filename="game.cpp" />
+		<Unit filename="game.h" />
+		<Unit filename="leaderboard.cpp" />
+		<Unit filename="leaderboard.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="maze.cpp" />
+		<Unit filename="maze.h" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
+		<Unit filename="menuFunc.h" />
+		<Unit filename="player.cpp" />
+		<Unit filename="player.h" />
+		<Unit filename="post.cpp" />
+		<Unit filename="post.h" />
+		<Unit filename="robot.cpp" />
+		<Unit filename="robot.h" />
+		<Unit filename="structs.h" />
+		<Unit filename="winner.cpp" />
+		<Unit filename="winner.h" />
+		<Extensions>
+			<lib_finder disable_auto="1" />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
