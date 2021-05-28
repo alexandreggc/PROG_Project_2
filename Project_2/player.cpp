@@ -33,7 +33,7 @@ Movement Player::input() {
         }
         else if (cin.fail() && cin.eof()) exit(0);
         cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.ignore(10000, '\n');
         cout << endl << "Please enter a valid position: ";
     }
 }
