@@ -97,12 +97,12 @@ int Menu::mazeNumber() {
 }
 
 void Menu::startTimer() {
-    startTime = timer();
+    startTime = (double) timer();
 }
 
 // stop timer and store the time
 void Menu::stopTimer() { 
-    finalTime = difftime(timer(), startTime);
+    finalTime = difftime(timer(), (time_t)startTime);
 }
 
 std::string Menu::getWinners() const {
@@ -137,12 +137,12 @@ string Menu::fileString(const char file, int maze_number) {
 }
 
 // count the time in seconds
-double Menu::timer() {
+time_t Menu::timer() {
     time_t current_time;
     double seconds;
     time(&current_time);
     seconds = difftime(current_time, 0);
-    return seconds;
+    return (time_t) seconds;
 }
 
 // check if some key is in keys vector

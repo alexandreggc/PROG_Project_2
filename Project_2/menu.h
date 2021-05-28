@@ -25,7 +25,7 @@ class Menu {
     private:
         void invalidInput(const std::string msg);
         int waitForKeys(const std::vector<int>& keys);
-        double timer();
+        time_t timer();
         bool sameKey(const int keyIN, const std::vector<int>& keys);
         std::string fileString(const char file, int maze_number);
     private:
