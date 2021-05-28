@@ -1,5 +1,6 @@
 #include "game.h"
 
+#include <limits>
 #include <iostream>
 #include <fstream>
 
@@ -16,7 +17,7 @@ Game::Game(const string& filename) {
     int rows, cols;
     char c;
     file >> rows >> c >> cols;  // get number of rows and columns of the maze
-    file.ignore(10000, '\n'); // ignore the rest of the first line
+    file.ignore(numeric_limits<streamsize>::max(), '\n'); // ignore the rest of the first line
     maze = Maze(rows, cols);
 
     // search for all the maze elements and create new objects for them
@@ -39,7 +40,7 @@ Game::Game(const string& filename) {
                 maze.addDoor(dr);
             }
         }
-        file.ignore(10000, '\n');
+        file.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 
 }
@@ -179,14 +180,16 @@ bool Game::validMove(Movement& delta) {
 // update player position and checks his collisions
 void Game::updatePlayer(Movement& delta) {
     Position newPlayerPos = { player.getRow() + delta.dRow, player.getCol() + delta.dCol };
-    for (const Post& post : maze.getPosts()) {  // check if the player collided with a post
+    // check if the player collided with a post
+    for (const Post& post : maze.getPosts()) {
         if (post.isElectrified() && collide(newPlayerPos, post)) {
             player.setAsDead();
             gameState = LOST;
             return;
         }
     }
-    for (const Robot& robot : robots) {  // check if the player collided with a robot
+    // check if the player collided with a robot
+    for (const Robot& robot : robots) {
         if (robot.isAlive() && collide(newPlayerPos, robot)) {
             player.move(newPlayerPos);
             player.setAsDead();
@@ -194,7 +197,8 @@ void Game::updatePlayer(Movement& delta) {
             return;
         }
     }
-    for (const Door& door : maze.getDoors()) {  // check if the player entered a door
+    // check if the player entered a door
+    for (const Door& door : maze.getDoors()) {
         if (collide(newPlayerPos, door)) {
             maze.remove(door); // erase the exit door use by the player
             player.move(newPlayerPos);
@@ -211,7 +215,8 @@ void Game::updatePlayer(Movement& delta) {
 // update robot position and checks his collisions
 void Game::updateRobot(Robot &robot,  Movement& delta) {
     Position newRobotPos = { robot.getRow() + delta.dRow, robot.getCol() + delta.dCol };
-    for (Post& post : maze.getPosts()) {  // check if the robot collided with a post
+    // check if the robot collided with a post
+    for (Post& post : maze.getPosts()) {
         if (collide(newRobotPos, post)) {
             if (post.isElectrified()) {
                 maze.changePost(post);
@@ -224,7 +229,8 @@ void Game::updateRobot(Robot &robot,  Movement& delta) {
             return;
         }
     }
-    for (Robot& rb : robots) {  // check if the robot collided with another robot
+    // check if the robot collided with another robot
+    for (Robot& rb : robots) {
         if (collide(newRobotPos, rb)) {
             if (rb.isAlive()) rb.setAsDead();
             robot.move(newRobotPos);
@@ -232,13 +238,15 @@ void Game::updateRobot(Robot &robot,  Movement& delta) {
             return;
         }
     }
-    for (Door& door : maze.getDoors()) {  // check if the robot collided with a door
+    // check if the robot collided with a door
+    for (Door& door : maze.getDoors()) {
         if (collide(newRobotPos, door)) {
             Position newRobotPos = { robot.getRow(), robot.getCol()};
             return;
         }
     }
-    if (collide(newRobotPos, player)) { // check if the robot collided with player
+    // check if the robot collided with player
+    if (collide(newRobotPos, player)) {
         player.setAsDead();
         gameState = LOST;
         return;

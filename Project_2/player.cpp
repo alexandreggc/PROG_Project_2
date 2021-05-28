@@ -1,6 +1,8 @@
 #include "structs.h"
 #include "player.h"
+
 #include <iostream>
+#include <limits>
 
 using namespace std;
 
@@ -12,7 +14,7 @@ Player::Player() {
 }
 
 Player::Player(int row, int col, char symbol) {
-	this->row = row;
+    this->row = row;
 	this->col = col;
 	this->symbol = 'H';
 	this->alive = true;
@@ -33,7 +35,7 @@ Movement Player::input() {
         }
         else if (cin.fail() && cin.eof()) exit(0);
         cin.clear();
-        cin.ignore(10000, '\n');
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cout << endl << "Please enter a valid position: ";
     }
 }

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <sstream>
 #include <iomanip>
+#include <limits>
 
 using namespace std;
 
@@ -75,7 +76,7 @@ int Menu::waitForKeys(const vector<int>& keys) {
 // clears stream buffer
 void Menu::invalidInput(const string msg) {
     cin.clear();
-    cin.ignore(10000, '\n');
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     cout << endl << msg << ' ';
 }
 
