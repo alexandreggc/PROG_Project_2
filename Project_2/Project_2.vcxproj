@@ -167,7 +167,7 @@
     <Text Include="MAZE_01_WINNERS.txt" />
     <Text Include="MAZE_02.txt" />
     <Text Include="MAZE_02_WINNERS.txt" />
-    <Text Include="rules.txt" />
+    <Text Include="RULES.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

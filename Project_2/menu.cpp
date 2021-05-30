@@ -42,7 +42,7 @@ void Menu::chooseMazeFile() {
 
 // display game rules text file
 void Menu::displayRules() {
-    fstream rules("rules.txt");
+    fstream rules("RULES.txt");
     cout << endl << rules.rdbuf() << ' ';
     rules.close();
     vector<int> keys{ 0 };
