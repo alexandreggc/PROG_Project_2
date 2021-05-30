@@ -166,7 +166,6 @@ bool Game::collide(const Position& pos, const Door& door) {
 // check if delta movement is a valid player movement
 bool Game::validMove(Movement& delta) {
     Position newPos = { player.getRow() + delta.dRow, player.getCol() + delta.dCol };
-    cout << newPos.row << " " << newPos.col << endl;
     for (const Post& post : maze.getPosts()) {
         if (!post.isElectrified() && collide(newPos, post))
             return false;
