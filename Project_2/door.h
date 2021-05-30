@@ -1,4 +1,3 @@
-#pragma once
 #ifndef DOOR_H
 #define DOOR_H
 #include "structs.h"

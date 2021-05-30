@@ -31,11 +31,6 @@ int Door::getID() const {
 	return id;
 }
 
-int Door::getNum() const
-{
-	return doorCounter;
-}
-
 Position Door::getPosition() const {
 	return {row, col};
 }

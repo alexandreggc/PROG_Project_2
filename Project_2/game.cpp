@@ -42,7 +42,7 @@ Game::Game(const string& filename) {
         }
         file.ignore(numeric_limits<streamsize>::max(), '\n');
     }
-
+    file.close();
 }
 
 // gameloop functions that return true if player won otherwise return false

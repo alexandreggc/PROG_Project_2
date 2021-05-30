@@ -21,6 +21,7 @@ Player::Player(int row, int col, char symbol) {
     setKeys();
 }
 
+// get player keyboard input
 Movement Player::input() {
     char dir;
     cout << endl;
@@ -74,6 +75,7 @@ void Player::move(Position position) {
     col = position.col;
 }
 
+// establish the keys to the corresponding movement vectors
 void Player::setKeys() {
     keys['Q'] = { -1,-1 };
     keys['W'] = { -1, 0 };

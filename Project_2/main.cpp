@@ -28,7 +28,7 @@ int main(){
                         Game game(menu.getMaze()); // create game object
                         menu.startTimer();
 
-                        if (game.play()) {
+                        if (game.play()) { // start the game
                             menu.stopTimer();
                             cout << endl << "Congratulations! You Won!" << endl;
                             Leaderboard ldBoard(menu.getWinners()); // create leaderboard object

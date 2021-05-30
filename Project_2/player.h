@@ -1,4 +1,3 @@
-#pragma once
 #ifndef PLAYER_H
 #define PLAYER_H
 #include "structs.h"
@@ -18,11 +17,11 @@ class Player {
 		bool isAlive() const;
 		void setAsDead();
 		void move(Position position);
+	private:
 		void setKeys();
-
+		Movement moveDirection(char dir);
 	private:
 		std::map<char, Movement> keys;
-		Movement moveDirection(char dir);
 		int row, col;
 		bool alive;
 		char symbol;

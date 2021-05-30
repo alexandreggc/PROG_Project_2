@@ -1,4 +1,3 @@
-#pragma once
 #ifndef POST_H
 #define POST_H
 #include "structs.h"
@@ -16,8 +15,7 @@ class Post {
 		void setNoElectric();
 	private:
 		static int postCounter; //used to attribute automatically the id to the posts
-		int row, col;
-		int id;
+		int id, row, col;
 		char type;
 };
 

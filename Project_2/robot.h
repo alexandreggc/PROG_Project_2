@@ -1,4 +1,3 @@
-#pragma once
 #ifndef ROBOT_H
 #define ROBOT_H
 #include "structs.h"
@@ -18,8 +17,7 @@ class Robot {
 		Movement minimumPath(Position &pl) const;
 	private:
 		static int robotCounter; //used to attribute automatically the id to the robots
-		int id;
-		int row, col;
+		int id, row, col;
 		bool alive;
 		char symbol;
 };
